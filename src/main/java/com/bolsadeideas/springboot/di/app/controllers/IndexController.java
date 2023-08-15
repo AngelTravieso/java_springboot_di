@@ -11,14 +11,31 @@ public class IndexController {
 
     // private MyService service = new MyService();
 
-    // Se inyecta el servicio con la notacion Autowired
+    // Se inyecta el servicio con la notación Autowired
     @Autowired // Esto inyecta un objeto que está registrado en el contenedor de spring (debe estar marcado como @Component o @Service)
     private IService service;
+
+    // Inyectando dependencia con el constructor, con el constructor se puede omitir el Autowired (no hay problema, aunque es mejor declararlo de manera explícita)
+    /*
+    @Autowired
+    public IndexController(IService service) {
+        this.service = service;
+    }
+
+     */
 
     @GetMapping({"/","","/index"})
     public String index(Model model) {
         model.addAttribute("object", service.operation());
         return "index";
     }
+
+    // Inyectando la dependencia con un setter (también válido)
+    /*
+    @Autowired
+    public void setService(IService service) {
+        this.service = service;
+    }
+    */
 
 }
