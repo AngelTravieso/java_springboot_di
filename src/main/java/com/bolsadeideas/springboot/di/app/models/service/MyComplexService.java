@@ -5,10 +5,9 @@ import org.springframework.stereotype.Component;
 
 // Entre @Component y @Service la diferencia es semántica, actúan de igual manera
 @Component("myComplexService")
-@Primary // Primary permite seleccionar el candidato que se quiere inyectar por defecto en nuestras clases
 public class MyComplexService implements IService {
 
-    @Override // -> este método es una implementación de un padre
+    @Override // Este método es una implementación de un padre
     public String operation() {
         return "executing complicated process...";
     }

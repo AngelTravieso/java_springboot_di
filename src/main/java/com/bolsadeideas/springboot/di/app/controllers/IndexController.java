@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.di.app.controllers;
 
 import com.bolsadeideas.springboot.di.app.models.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,10 @@ public class IndexController {
     // private MyService service = new MyService();
 
     // Se inyecta el servicio con la notación Autowired
-    @Autowired // Esto inyecta un objeto que está registrado en el contenedor de spring (debe estar marcado como @Component o @Service)
+    // Esto inyecta un objeto que está registrado en el contenedor de spring (debe estar marcado como @Component o @Service)
+    @Autowired
+    // Esto permite inyectar la dependencia cuando no es primaria por su nombre, dependencias secundarias
+    @Qualifier("myComplexService")
     private IService service;
 
     // Inyectando dependencia con el constructor, con el constructor se puede omitir el Autowired (no hay problema, aunque es mejor declararlo de manera explícita)
